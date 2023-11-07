@@ -1,14 +1,14 @@
 <template>
-  <canvas id="lineChart" width="400" height="400"> </canvas>
+  <canvas ref="lineChart" id="lineChart" width="400" height="400"> </canvas>
 </template>
 
 <script>
-import Chart from "chart.js";
 export default {
   mounted() {
-    var ctx = document.getElementById("lineChart");
+    // var ctx = document.getElementById("lineChart");
+    var ctx = this.$refs.lineChart;
     // eslint-disable-next-line
-    var chart = new Chart(ctx, {
+    var chart = new this.$_Chart(ctx, {
       // The type of chart we want to create
       type: "line",
 
@@ -35,6 +35,9 @@ export default {
 
       // Configuration options go here
       options: {},
+      onClick: function () {
+        this.$emit("refresh:chart");
+      },
     });
   },
 };
